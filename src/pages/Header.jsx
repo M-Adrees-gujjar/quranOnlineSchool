@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft,faAnglesRight} from '@fortawesome/free-solid-svg-icons'
 
 const images = [
-    '/src/assets/images/BannerNo2.jpg',
-    '/src/assets/images/BannerNo3.jpg'
+    'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/BannerNo2_xqffzp.jpg',
+    'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/BannerNo3_k3a8dn.jpg'
 ]
 
 const Header = () => {

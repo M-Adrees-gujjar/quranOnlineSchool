@@ -29,7 +29,7 @@ export default function AboutUs() {
             <div className="border-main-color border-2 w-full lg:h-full h-60 rounded-lg flex justify-center items-center">
               <img
                 alt="Product screenshot"
-                src="/src/assets/images/asset1.png"
+                src="https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463829/asset1_dmwkas.png"
                 width={100}
                 height={100}
                 className="object-fill object-center h-32 w-60"
