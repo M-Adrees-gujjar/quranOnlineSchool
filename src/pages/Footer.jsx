@@ -11,7 +11,7 @@ export default function Footer() {
               <div className="flex flex-shrink-0 items-center">
                 <img
                   alt="Your Company"
-                  src="/src/assets/images/asset1.png"
+                  src="https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463829/asset1_dmwkas.png"
                   className="h-10 w-auto"
                 />
               </div>
