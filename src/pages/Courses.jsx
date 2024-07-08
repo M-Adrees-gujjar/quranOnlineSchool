@@ -48,7 +48,7 @@ const products = [
       id: 1,
       name: 'Serah Course',
       href: '#',
-      imageSrc: '/src/assets/images/CourseSix.jpg',
+      imageSrc: 'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463831/CourseSix_x62gsj.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
       color: 'Black',
