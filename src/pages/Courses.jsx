@@ -9,7 +9,7 @@ const products = [
       color: 'Black',
     },
     {
-      id: 1,
+      id: 2,
       name: 'Tajweed Course',
       href: '#',
       imageSrc: 'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463831/CourseTwo_cigjwa.jpg',
@@ -18,7 +18,7 @@ const products = [
       color: 'Black',
     },
     {
-      id: 1,
+      id: 3,
       name: 'Quran Memorization',
       href: '#',
       imageSrc: 'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/CourseThree_ejmcpx.jpg',
@@ -27,7 +27,7 @@ const products = [
       color: 'Black',
     },
     {
-      id: 1,
+      id: 4,
       name: 'Quran Tafsir',
       href: '#',
       imageSrc: 'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/CourseFour_vhqet5.jpg',
@@ -36,7 +36,7 @@ const products = [
       color: 'Black',
     },
     {
-      id: 1,
+      id: 5,
       name: 'Tarbiyah Classess',
       href: '#',
       imageSrc: 'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/CourseFive_xoyewo.jpg',
@@ -45,7 +45,7 @@ const products = [
       color: 'Black',
     },
     {
-      id: 1,
+      id: 6,
       name: 'Serah Course',
       href: '#',
       imageSrc: 'https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463831/CourseSix_x62gsj.jpg',
@@ -56,6 +56,12 @@ const products = [
   ]
   
   export default function Courses() {
+
+    function handleCourse(product) {
+      console.log("-----",product);
+      location.replace("courseDetail");
+    }
+
     return (
       <div className="bg-white shadow-sm">
         <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-6xl">
@@ -79,7 +85,9 @@ const products = [
                     <h3 className="text-2xl font-semibold text-main-color text-center">
                       {product.name}
                     </h3>
-                    <button type="button" className="transition-all border-2 text-2xl bg-main-color hover:bg-white border-main-color text-white hover:text-main-color font-bold w-full py-2 my-5 rounded-md">
+                    <button 
+                    onClick={()=>handleCourse(product)}
+                    type="button" className="transition-all border-2 text-2xl bg-main-color hover:bg-white border-main-color text-white hover:text-main-color font-bold w-full py-2 my-5 rounded-md">
                       Course Details
                     </button>
                   </div>

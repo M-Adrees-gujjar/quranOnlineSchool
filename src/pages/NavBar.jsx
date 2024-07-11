@@ -1,6 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -9,11 +10,11 @@ function classNames(...classes) {
 export default function NavBar() {
 
     const [navigation,setNavigation] = useState([
-        { name: 'Home', href: '#', current: true },
-        { name: 'Blog', href: '#', current: false },
-        { name: 'Courses', href: '#', current: false },
-        { name: 'About Us', href: '#', current: false },
-        { name: 'Contact', href: '#', current: false },
+        { name: 'Home', href: '/', current: true },
+        { name: 'Blog', href: '/blog', current: false },
+        { name: 'Courses', href: '/', current: false },
+        { name: 'About Us', href: '/', current: false },
+        { name: 'Contact', href: '/', current: false },
       ])
 
     function handleNavButton(item) {
@@ -46,11 +47,11 @@ export default function NavBar() {
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <button
+                {navigation.map((item,index) => (
+                  <NavLink
                   onClick={()=>handleNavButton(item)}
-                    key={item.name}
-                    href={item.href}
+                    key={index}
+                    to={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'text-white bg-main-color' : 'hover:bg-main-color text-main-color hover:text-white',
@@ -58,7 +59,7 @@ export default function NavBar() {
                     )}
                   >
                     {item.name}
-                  </button>
+                  </NavLink>
                 ))}
               </div>
             </div>

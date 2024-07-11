@@ -1,5 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWhatsapp , faSkype , faFacebook} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWhatsapp,
+  faSkype,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
+import { NavLink } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -17,44 +22,43 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-lg font-semibold text-main-color leading-5">
-            We provide Muslims worldwide with an opportunity to learn the Holy Quran, focusing on those in the West. Our aim is to enable learners of all ages to read and recite the Quran accurately and to provide basic awareness about Islam teachings.
+              We provide Muslims worldwide with an opportunity to learn the Holy
+              Quran, focusing on those in the West. Our aim is to enable
+              learners of all ages to read and recite the Quran accurately and
+              to provide basic awareness about Islam teachings.
             </p>
             <div className="flex my-5 gap-5">
-                <div className="px-2 py-1 bg-main-color text-white rounded-md">
-                    <span>
-                    <FontAwesomeIcon icon={faWhatsapp} />
-                    </span>
-                </div>
-                <div className="px-2 py-1 bg-main-color text-white rounded-md">
+              <div className="px-2 py-1 bg-main-color text-white rounded-md">
+                <span>
+                  <FontAwesomeIcon icon={faWhatsapp} />
+                </span>
+              </div>
+              <div className="px-2 py-1 bg-main-color text-white rounded-md">
                 <FontAwesomeIcon icon={faFacebook} />
-                </div>
-                <div className="px-2 py-1 bg-main-color text-white rounded-md">
+              </div>
+              <div className="px-2 py-1 bg-main-color text-white rounded-md">
                 <FontAwesomeIcon icon={faSkype} />
-                </div>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-5">
             <div className="items-start">
               <dt className="font-bold text-2xl text-main-color">
                 Quick Links
-            </dt>
+              </dt>
             </div>
             <div className="flex-col items-start">
-              <li className='text-main-color font-semibold'>
-                Blog
-              </li>
-              <li className='text-main-color font-semibold'>
-                Courses
-              </li>
-              <li className='text-main-color font-semibold'>
-                About Us
-              </li>
+              <li className="text-main-color font-semibold">Blog</li>
+              <li className="text-main-color font-semibold">Courses</li>
+              <li className="text-main-color font-semibold">About Us</li>
             </div>
           </div>
         </div>
-            <div className="w-full border-t-2 mt-5 border-main-color">
-                <p className='text-center text-main-color font-semibold mt-4'>CopyRight@MAdreesGujjar22</p>
-            </div>
+        <div className="w-full border-t-2 pt-5 border-main-color text-center text-main-color font-semibold">
+          <NavLink className="hover:border-b-2 hover:border-b-main-color">
+            CopyRight@Admin
+          </NavLink>
+        </div>
       </div>
     </div>
   );
