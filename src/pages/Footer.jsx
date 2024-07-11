@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="w-full border-t-2 pt-5 border-main-color text-center text-main-color font-semibold">
-          <NavLink className="hover:border-b-2 hover:border-b-main-color">
+          <NavLink to="logInForm" className="hover:border-b-2 hover:border-b-main-color">
             CopyRight@Admin
           </NavLink>
         </div>

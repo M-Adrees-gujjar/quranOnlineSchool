@@ -1,13 +1,40 @@
 import PopUp from "../components/PopUp";
 import { useEffect, useState } from "react";
 export default function LogInForm() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [popUpContent, setPopUpContent] = useState("DummyContent");
+  const [inputValue,setInputValue] = useState({
+    email : '',
+    password : ''
+  });
+
   useEffect(() => {
     setTimeout(() => {
       setOpen(false);
     }, 2000);
   }, [open]);
+
+  function handleSubmit() {
+    console.log("Data --- ",inputValue);
+    fetch('http://localhost:3000/adminLogIn',{
+      method : "POST",
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({
+        email : inputValue.email,
+        password : inputValue.password
+      })
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+      console.log("Response --- ",res);
+    })
+  }
+
+  // useEffect(()=>{
+
+  // },[]);
 
   return (
     <>
@@ -24,7 +51,7 @@ export default function LogInForm() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <div className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -37,9 +64,11 @@ export default function LogInForm() {
                   id="email"
                   name="email"
                   type="email"
+                  value={inputValue.email}
+                  onChange={(e)=>setInputValue({...inputValue,email : e.target.value})}
                   required
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-main-color shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-main-color focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-sm sm:leading-6 px-5"
+                  className="block w-full rounded-md border-0 py-1.5 text-main-color shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-main-color focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-sm sm:leading-6 px-5 focus-visible:outline-none"
                 />
               </div>
             </div>
@@ -66,22 +95,25 @@ export default function LogInForm() {
                   id="password"
                   name="password"
                   type="password"
+                  value={inputValue.password}
+                  onChange={(e)=>setInputValue({...inputValue,password : e.target.value})}
                   required
                   autoComplete="current-password"
-                  className="block w-full rounded-md border-0 py-1.5 text-main-color shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-main-color focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-sm sm:leading-6 px-5 focus-visible:ring-main-color"
+                  className="block w-full rounded-md border-0 py-1.5 text-main-color shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-main-color focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-sm sm:leading-6 px-5 focus-visible:outline-none"
                 />
               </div>
             </div>
 
             <div>
               <button
-                type="submit"
+                type="button"
+                onClick={handleSubmit}
                 className="flex w-full justify-center rounded-md bg-main-color px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-color"
               >
                 Sign in
               </button>
             </div>
-          </form>
+          </div>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             This is Just for admin
