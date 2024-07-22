@@ -9,12 +9,14 @@ export default function LogInForm() {
   });
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setOpen(false);
     }, 2000);
+    return  ()=>clearTimeout(timer);
   }, [open]);
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     console.log("Data --- ",inputValue);
     fetch('http://localhost:3000/adminLogIn',{
       method : "POST",
@@ -28,13 +30,19 @@ export default function LogInForm() {
     })
     .then((res)=>res.json())
     .then((res)=>{
-      console.log("Response --- ",res);
+      console.log("Response --- ",res.message);
+      setPopUpContent(res.message);
+      setOpen(true)
+
+      console.log("Suce ---- ",res.success);
+      if (res.success) {
+        location.replace('adminDashBoard')
+      } else {
+        return
+      }
+
     })
   }
-
-  // useEffect(()=>{
-
-  // },[]);
 
   return (
     <>
@@ -50,7 +58,7 @@ export default function LogInForm() {
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form onSubmit={handleSubmit} className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <div className="space-y-6">
             <div>
               <label
@@ -72,7 +80,6 @@ export default function LogInForm() {
                 />
               </div>
             </div>
-
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -106,8 +113,9 @@ export default function LogInForm() {
 
             <div>
               <button
-                type="button"
-                onClick={handleSubmit}
+                type="submit"
+                // onSubmit={(e)=>handleSubmit(e)}
+                // onClick={handleSubmit}
                 className="flex w-full justify-center rounded-md bg-main-color px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-color"
               >
                 Sign in
@@ -118,7 +126,7 @@ export default function LogInForm() {
           <p className="mt-10 text-center text-sm text-gray-500">
             This is Just for admin
           </p>
-        </div>
+        </form>
       </div>
       <PopUp open={open} setOpen={setOpen} popUpContent={popUpContent} />
     </>
