@@ -1,4 +1,5 @@
 import PopUp from "../components/PopUp";
+import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react";
 export default function LogInForm() {
   const [open, setOpen] = useState(false);
@@ -7,6 +8,7 @@ export default function LogInForm() {
     email : '',
     password : ''
   });
+  const navigate = useNavigate()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,7 +38,8 @@ export default function LogInForm() {
 
       console.log("Suce ---- ",res.success);
       if (res.success) {
-        location.replace('adminDashBoard')
+        // location.replace('adminDashBoard')
+        navigate('/adminDashBoard', {replace: true})
       } else {
         return
       }
