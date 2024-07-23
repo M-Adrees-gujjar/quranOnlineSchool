@@ -1,0 +1,60 @@
+import { useState , useRef} from 'react';
+import JoditEditor from 'jodit-react';
+
+export default function AddNewBlog() {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const editor = useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log('Title:', title);
+    console.log('Description:', description);
+  };
+
+  return (
+    <div className="py-32 flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-5xl">
+        <h1 className="text-3xl font-bold mb-6">Add New Blog</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-gray-700 mb-2 text-xl font-semibold text-main-color">Title</label>
+            <input
+              type="text"
+              id="title"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-main-color"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-6 focus:ring-2 focus:ring-main-color">
+            <label htmlFor="description" className="block text-gray-700 mb-2 text-xl font-semibold text-main-color">Description</label>
+            <JoditEditor
+              ref={editor}
+              value={description}
+              onBlur={newContent => setDescription(newContent)}
+              config={{
+                readonly: false,
+                toolbarButtonSize: "middle",
+                height: 300,
+                buttons: [
+                  'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 
+                  'eraser', 'ul', 'ol', 'outdent', 'indent', 'font', 'fontsize', 'brush', 'paragraph', 
+                  'image', 'table', 'link', 'align', 'undo', 'redo', 'hr', 'copyformat', 'fullsize', 
+                  'selectall', 'print', 'preview', 'source'
+                ]
+              }}
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-main-color text-white py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            Save Blog
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

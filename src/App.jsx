@@ -6,6 +6,8 @@ import BlogDetail from "./pages/BlogDetail";
 import CourseDetail from "./pages/CourseDetail";
 import LogInForm from "./pages/LogInForm";
 import AdminDashBoard from "./pages/AdminDashBoard";
+import AddNewBlog from "./pages/AddNewBlog";
+import ViewAllBlogs from "./pages/ViewAllBlogs";
 // import adminLogIn from "./pages/AdminPanel/adminLogIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -21,6 +23,8 @@ function App() {
           <Route path="courseDetail" element={<CourseDetail />} />
           <Route path="logInForm" element={<LogInForm />} />
           <Route path="adminDashBoard" element={<AdminDashBoard />} />
+          <Route path="addNewBlog" element={<AddNewBlog />} />
+          <Route path="viewAllBlogs" element={<ViewAllBlogs />} />
         </Routes>
         <Footer />
       </Router>
