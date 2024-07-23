@@ -32,18 +32,13 @@ export default function LogInForm() {
     })
     .then((res)=>res.json())
     .then((res)=>{
-      console.log("Response --- ",res.message);
       setPopUpContent(res.message);
       setOpen(true)
-
-      console.log("Suce ---- ",res.success);
       if (res.success) {
-        // location.replace('adminDashBoard')
         navigate('/adminDashBoard', {replace: true})
       } else {
         return
       }
-
     })
   }
 

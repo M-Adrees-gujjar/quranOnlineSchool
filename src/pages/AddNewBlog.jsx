@@ -1,13 +1,41 @@
-import { useState , useRef} from 'react';
+import { useState , useRef , useEffect} from 'react';
 import JoditEditor from 'jodit-react';
+import PopUp from "../components/PopUp";
 
 export default function AddNewBlog() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [open, setOpen] = useState(false);
+  const [popUpContent, setPopUpContent] = useState("DummyContent");
   const editor = useRef(null);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+    return  ()=>clearTimeout(timer);
+  }, [open]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
+
+    fetch('http://localhost:3000/blogSubmit',{
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({
+        title : title,
+        description : description
+      })
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log("Resof API --- ",res);
+      setPopUpContent(res.message);
+      setOpen(true);
+    })
+
     console.log('Title:', title);
     console.log('Description:', description);
   };
@@ -55,6 +83,7 @@ export default function AddNewBlog() {
           </button>
         </form>
       </div>
+      <PopUp open={open} setOpen={setOpen} popUpContent={popUpContent} />
     </div>
   );
 }
