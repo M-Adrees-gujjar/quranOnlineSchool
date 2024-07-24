@@ -11,6 +11,7 @@ export default function Footer() {
   const navigate = useNavigate();
   function handleLogIn() {
     navigate("/logInForm", { replace: true });
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -64,13 +65,13 @@ export default function Footer() {
           </div>
         </div>
         <div className="w-full border-t-2 pt-5 border-main-color text-center text-main-color font-semibold">
-          <a
+          <button
             onClick={handleLogIn}
             // href="logInForm"
             className="hover:border-b-2 hover:border-b-main-color"
           >
             CopyRight@Admin
-          </a>
+          </button>
         </div>
       </div>
     </div>
