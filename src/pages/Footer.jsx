@@ -5,9 +5,19 @@ import {
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
+  const navigate = useNavigate();
+  function handleLogIn() {
+    navigate("/logInForm", { replace: true });
+  }
+
   return (
-    <div className="relative isolate overflow-hidden py-8 mt-8 sm:py-12 lg:py-20 shadow-lg border-t-2 border-gray-200" id="footer">
+    <div
+      className="relative isolate overflow-hidden py-8 mt-8 sm:py-12 lg:py-20 shadow-lg border-t-2 border-gray-200"
+      id="footer"
+    >
       <div className="mx-auto max-w-6xl px-6 lg:px-0">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
@@ -54,7 +64,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="w-full border-t-2 pt-5 border-main-color text-center text-main-color font-semibold">
-          <a href="logInForm" className="hover:border-b-2 hover:border-b-main-color">
+          <a
+            onClick={handleLogIn}
+            // href="logInForm"
+            className="hover:border-b-2 hover:border-b-main-color"
+          >
             CopyRight@Admin
           </a>
         </div>
