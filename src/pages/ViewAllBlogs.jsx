@@ -12,7 +12,7 @@ const BlogList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/getAllBlogs")
+    fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getAllBlogs")
       .then((res) => res.json())
       .then((res) => {
         setBlogs(res.message);
@@ -34,7 +34,7 @@ const BlogList = () => {
   };
 
   const handleDelete = (id) => {
-    fetch("http://localhost:3000/blogDelete", {
+    fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/blogDelete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

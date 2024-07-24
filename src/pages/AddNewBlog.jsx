@@ -16,7 +16,7 @@ export default function AddNewBlog() {
     const queryParams = new URLSearchParams(search);
     const id = queryParams.get("id");
     if (id) {
-      fetch("http://localhost:3000/getBlogById", {
+      fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getBlogById", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function AddNewBlog() {
     const id = queryParams.get("id");
 
     if (id) {
-      fetch("http://localhost:3000/blogUpdate", {
+      fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/blogUpdate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function AddNewBlog() {
 
         });
     } else {
-      fetch("http://localhost:3000/blogSubmit", {
+      fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/blogSubmit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

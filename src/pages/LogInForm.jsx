@@ -19,7 +19,7 @@ export default function LogInForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:3000/adminLogIn',{
+    fetch('https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/adminLogIn',{
       method : "POST",
       headers : {
         'Content-Type' : 'application/json'

@@ -7,7 +7,7 @@ export default function Blog() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/getAllBlogs')
+    fetch('https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getAllBlogs')
       .then(res => res.json())
       .then(res => {
         setArticles(res.message);
