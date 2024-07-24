@@ -1,6 +1,6 @@
 export default function AboutUs() {
   return (
-    <div className="overflow-hidden bg-white py-4">
+    <div className="overflow-hidden bg-white py-4" id="aboutUS">
       <div className="mx-auto max-w-6xl px-6 lg:px-8 border-2 border-gray-200 rounded-md lg:shadow-md py-8 sm:py-12">
         <div className="mx-auto grid lg:grid-cols-2 grid-cols-1 lg:gap-20">
           <div className="">

@@ -63,7 +63,7 @@ const products = [
     }
 
     return (
-      <div className="bg-white shadow-sm">
+      <div className="bg-white shadow-sm" id="course">
         <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-6xl">
           <div className="lg:border-gray-200 lg:border-2 p-2 lg:rounded-md lg:shadow-md">
           <h2 className="font-bold tracking-tight text-main-color text-3xl">

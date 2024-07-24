@@ -11,8 +11,6 @@ export default function BlogDetail() {
   useEffect(()=>{
     const queryParams = new URLSearchParams(search);
     const id = queryParams.get('id');
-    console.log("Hello --- ",id);
-    
     fetch('http://localhost:3000/getBlogById',{
       method : 'POST',
       headers : {
@@ -24,7 +22,6 @@ export default function BlogDetail() {
     })
     .then(res=>res.json())
     .then(res=>{
-      console.log("getBlogById API --- ",res);
       setBlog(res.message)
     })
   },[])

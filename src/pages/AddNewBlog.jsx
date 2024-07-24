@@ -1,43 +1,88 @@
-import { useState , useRef , useEffect} from 'react';
-import JoditEditor from 'jodit-react';
+import { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import JoditEditor from "jodit-react";
 import PopUp from "../components/PopUp";
 
 export default function AddNewBlog() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [open, setOpen] = useState(false);
   const [popUpContent, setPopUpContent] = useState("DummyContent");
   const editor = useRef(null);
+  const navigate = useNavigate();
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(search);
+    const id = queryParams.get("id");
+    if (id) {
+      fetch("http://localhost:3000/getBlogById", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setTitle(res.message.title);
+          setDescription(res.message.description);
+        });
+    }
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setOpen(false);
     }, 2000);
-    return  ()=>clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [open]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
+    const queryParams = new URLSearchParams(search);
+    const id = queryParams.get("id");
 
-    fetch('http://localhost:3000/blogSubmit',{
-      method : 'POST',
-      headers : {
-        'Content-Type' : 'application/json'
-      },
-      body : JSON.stringify({
-        title : title,
-        description : description
+    if (id) {
+      fetch("http://localhost:3000/blogUpdate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id : id,
+          title: title,
+          description: description,
+        }),
       })
-    })
-    .then(res=>res.json())
-    .then(res=>{
-      console.log("Resof API --- ",res);
-      setPopUpContent(res.message);
-      setOpen(true);
-    })
+        .then((res) => res.json())
+        .then((res) => {
+          setPopUpContent(res.message);
+          setOpen(true);
+          navigate('/viewAllBlogs', { replace: true });
 
-    console.log('Title:', title);
-    console.log('Description:', description);
+        });
+    } else {
+      fetch("http://localhost:3000/blogSubmit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          description: description,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setPopUpContent(res.message);
+          setOpen(true);
+          navigate('/viewAllBlogs', { replace: true });
+        });
+    }
   };
 
   return (
@@ -46,7 +91,12 @@ export default function AddNewBlog() {
         <h1 className="text-3xl font-bold mb-6">Add New Blog</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title" className="block text-gray-700 mb-2 text-xl font-semibold text-main-color">Title</label>
+            <label
+              htmlFor="title"
+              className="block text-gray-700 mb-2 text-xl font-semibold text-main-color"
+            >
+              Title
+            </label>
             <input
               type="text"
               id="title"
@@ -57,21 +107,50 @@ export default function AddNewBlog() {
             />
           </div>
           <div className="mb-6 focus:ring-2 focus:ring-main-color">
-            <label htmlFor="description" className="block text-gray-700 mb-2 text-xl font-semibold text-main-color">Description</label>
+            <label
+              htmlFor="description"
+              className="block text-gray-700 mb-2 text-xl font-semibold text-main-color"
+            >
+              Description
+            </label>
             <JoditEditor
               ref={editor}
               value={description}
-              onBlur={newContent => setDescription(newContent)}
+              onBlur={(newContent) => setDescription(newContent)}
               config={{
                 readonly: false,
                 toolbarButtonSize: "middle",
                 height: 300,
                 buttons: [
-                  'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 
-                  'eraser', 'ul', 'ol', 'outdent', 'indent', 'font', 'fontsize', 'brush', 'paragraph', 
-                  'image', 'table', 'link', 'align', 'undo', 'redo', 'hr', 'copyformat', 'fullsize', 
-                  'selectall', 'print', 'preview', 'source'
-                ]
+                  "bold",
+                  "italic",
+                  "underline",
+                  "strikethrough",
+                  "superscript",
+                  "subscript",
+                  "eraser",
+                  "ul",
+                  "ol",
+                  "outdent",
+                  "indent",
+                  "font",
+                  "fontsize",
+                  "brush",
+                  "paragraph",
+                  "image",
+                  "table",
+                  "link",
+                  "align",
+                  "undo",
+                  "redo",
+                  "hr",
+                  "copyformat",
+                  "fullsize",
+                  "selectall",
+                  "print",
+                  "preview",
+                  "source",
+                ],
               }}
             />
           </div>

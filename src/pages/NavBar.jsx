@@ -12,9 +12,9 @@ export default function NavBar() {
     const [navigation,setNavigation] = useState([
         { name: 'Home', href: '/', current: true },
         { name: 'Blog', href: '/blog', current: false },
-        { name: 'Courses', href: '/', current: false },
-        { name: 'About Us', href: '/', current: false },
-        { name: 'Contact', href: '/', current: false },
+        { name: 'Courses', href: '/courses', current: false },
+        { name: 'About Us', href: '/aboutUs', current: false },
+        { name: 'Contact', href: '/contact', current: false },
       ])
 
     function handleNavButton(item) {
@@ -53,10 +53,11 @@ export default function NavBar() {
                     key={index}
                     to={item.href}
                     aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
-                      item.current ? 'text-white bg-main-color' : 'hover:bg-main-color text-main-color hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                    )}
+                    className={({isActive})=>(isActive ? "text-white bg-main-color rounded-md px-3 py-2 text-sm font-medium" : "hover:bg-main-color text-main-color hover:text-white rounded-md px-3 py-2 text-sm font-medium" )}
+                    // className={classNames(
+                    //   item.current ? 'text-white bg-main-color' : 'hover:bg-main-color text-main-color hover:text-white',
+                    //   'rounded-md px-3 py-2 text-sm font-medium',
+                    // )}
                   >
                     {item.name}
                   </NavLink>

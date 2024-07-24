@@ -19,7 +19,6 @@ export default function LogInForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Data --- ",inputValue);
     fetch('http://localhost:3000/adminLogIn',{
       method : "POST",
       headers : {
