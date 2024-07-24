@@ -1,4 +1,3 @@
-// src/components/BlogList.js
 import { useState, useEffect } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

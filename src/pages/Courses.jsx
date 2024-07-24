@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const products = [
     {
       id: 1,
@@ -57,9 +59,10 @@ const products = [
   
   export default function Courses() {
 
-    function handleCourse(product) {
-      console.log("-----",product);
-      location.replace("courseDetail");
+    const navigate = useNavigate();
+
+    function handleCourse() {
+      navigate("/courseDetail",{replace : true})
     }
 
     return (
