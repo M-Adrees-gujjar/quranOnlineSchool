@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function AdminDashBoard() {
   return (
@@ -25,12 +25,12 @@ export default function AdminDashBoard() {
           <h2 className="text-2xl font-semibold mb-4">Courses</h2>
           <p className="mb-4">Manage your courses here.</p>
           <div className="flex lg:flex-row flex-col gap-3">
-            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+            <Link to="/addNewCourse" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
               Add New Course
-            </button>
-            <button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            </Link>
+            <Link to="/viewAllCourses" className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
               View All Courses
-            </button>
+            </Link>
           </div>
         </div>
       </div>

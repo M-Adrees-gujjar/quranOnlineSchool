@@ -1,5 +1,6 @@
 
 export default function CourseContent() {
+
   return (
     <div className=" p-3">
         <p className="text-xl text-main-color text-justify">
