@@ -12,7 +12,7 @@ const CourseList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:80/getAllCourses")
+    fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getAllCourses")
       .then((res) => res.json())
       .then((res) => {
         setCourses(res.message);
@@ -34,7 +34,7 @@ const CourseList = () => {
   };
 
   const handleDelete = (id) => {
-    fetch("http://localhost:80/courseDelete", {
+    fetch("https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/courseDelete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

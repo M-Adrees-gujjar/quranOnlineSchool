@@ -70,7 +70,7 @@ export default function Courses() {
 
   useEffect(() => {
     fetch(
-      "http://localhost:80/getAllCourses"
+      "https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getAllCourses"
     )
       .then((res) => res.json())
       .then((res) => {
