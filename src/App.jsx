@@ -1,25 +1,27 @@
-import Home from "./pages/Home";
+import { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./pages/NavBar";
 import Footer from "./pages/Footer";
-import Blog from "./pages/Blog";
-import BlogDetail from "./pages/BlogDetail";
-import CourseDetail from "./pages/CourseDetail";
-import LogInForm from "./pages/LogInForm";
-import AdminDashBoard from "./pages/AdminDashBoard";
-import AddNewBlog from "./pages/AddNewBlog";
-import AddNewCourse from "./pages/AddNewCourse";
-import ViewAllBlogs from "./pages/ViewAllBlogs";
-import ViewAllCourses from "./pages/ViewAllCourses";
-import Courses from "./pages/Courses";
-import AboutUs from "./pages/AboutUs";
 import Whatsapp from "./components/Whatsapp";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+const Home = lazy(() => import("./pages/Home"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Courses = lazy(() => import("./pages/Courses"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const BlogDetail = lazy(() => import("./pages/BlogDetail"));
+const CourseDetail = lazy(() => import("./pages/CourseDetail"));
+const LogInForm = lazy(() => import("./pages/LogInForm"));
+const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));
+const AddNewBlog = lazy(() => import("./pages/AddNewBlog"));
+const AddNewCourse = lazy(() => import("./pages/AddNewCourse"));
+const ViewAllBlogs = lazy(() => import("./pages/ViewAllBlogs"));
+const ViewAllCourses = lazy(() => import("./pages/ViewAllCourses"));
 
 function App() {
   return (
     <div>
       <Router>
         <NavBar />
+        <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="blog" element={<Blog />} />
@@ -34,6 +36,7 @@ function App() {
           <Route path="viewAllBlogs" element={<ViewAllBlogs />} />
           <Route path="viewAllCourses" element={<ViewAllCourses />} />
         </Routes>
+        </Suspense>
         <Footer />
         <Whatsapp />
       </Router>

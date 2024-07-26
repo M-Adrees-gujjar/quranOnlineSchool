@@ -4,7 +4,7 @@ function useCourseHook(id) {
     const [data,setData] = useState([]);
 
     useEffect(()=>{
-      fetch('http://localhost:80/getCourseById',{
+      fetch('https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getCourseById',{
         method : 'POST',
         headers : {
           'Content-Type' : 'application/json'
