@@ -65,7 +65,7 @@ export default function AddNewBlog() {
         .then((res) => {
           setPopUpContent(res.message);
           setOpen(true);
-          navigate('/viewAllBlogs', { replace: true });
+          navigate('/viewAllCourses', { replace: true });
 
         });
     } else {
