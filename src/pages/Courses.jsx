@@ -1,71 +1,11 @@
 import { useEffect, useState } from "react";
 import { createSearchParams ,useNavigate } from "react-router-dom";
-
-// const products = [
-//   {
-//     id: 1,
-//     name: "Quran Reading",
-//     href: "#",
-//     imageSrc:
-//       "https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/courseOne_x0qkzy.jpg",
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: "$35",
-//     color: "Black",
-//   },
-//   {
-//     id: 2,
-//     name: "Tajweed Course",
-//     href: "#",
-//     imageSrc:
-//       "https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463831/CourseTwo_cigjwa.jpg",
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: "$35",
-//     color: "Black",
-//   },
-//   {
-//     id: 3,
-//     name: "Quran Memorization",
-//     href: "#",
-//     imageSrc:
-//       "https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/CourseThree_ejmcpx.jpg",
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: "$35",
-//     color: "Black",
-//   },
-//   {
-//     id: 4,
-//     name: "Quran Tafsir",
-//     href: "#",
-//     imageSrc:
-//       "https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/CourseFour_vhqet5.jpg",
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: "$35",
-//     color: "Black",
-//   },
-//   {
-//     id: 5,
-//     name: "Tarbiyah Classess",
-//     href: "#",
-//     imageSrc:
-//       "https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463830/CourseFive_xoyewo.jpg",
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: "$35",
-//     color: "Black",
-//   },
-//   {
-//     id: 6,
-//     name: "Serah Course",
-//     href: "#",
-//     imageSrc:
-//       "https://res.cloudinary.com/dkzca4hyd/image/upload/v1720463831/CourseSix_x62gsj.jpg",
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: "$35",
-//     color: "Black",
-//   },
-// ];
+import Loader from "../components/Loader";
 
 export default function Courses() {
   const [courses,setCourses] = useState([]);
+  const [loading,setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,8 +14,15 @@ export default function Courses() {
     )
       .then((res) => res.json())
       .then((res) => {
-        setCourses(res.message);
-        console.log("Res ID --- ", res.message);
+        if (res.success) {
+          setLoading(false);
+          setCourses(res.message);
+        } else {
+          console.log("Response---",res.message);
+        }
+      })
+      .catch((err)=>{
+        console.log("Error is this : ",err);
       });
   }, []);
 
@@ -85,7 +32,6 @@ export default function Courses() {
       pathname : '/courseDetail',
       search : createSearchParams({id : id}).toString()
     })
-    // navigate("/courseDetail", { replace: true });
   }
 
   return (
@@ -97,7 +43,7 @@ export default function Courses() {
           </h2>
 
           <div className="mt-6 flex flex-wrap lg:justify-between justify-center">
-            {courses.map((course) => (
+            {loading ? <Loader /> : (courses.map((course) => (
               <div
                 key={course._id}
                 className="group relative border-main-color rounded-md border-2 my-5"
@@ -120,7 +66,7 @@ export default function Courses() {
                   </div>
                 </div>
               </div>
-            ))}
+            )))}
           </div>
         </div>
       </div>

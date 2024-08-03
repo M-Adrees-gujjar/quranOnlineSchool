@@ -1,35 +1,36 @@
 import { useEffect, useState } from "react";
-import { createSearchParams, useNavigate } from 'react-router-dom'
-
+import { createSearchParams, useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 export default function Blog() {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getAllBlogs')
-      .then(res => res.json())
-      .then(res => {
-        setArticles(res.message);
-        console.log("Res ID --- ",res.message);
+    fetch(
+      "https://web-622d8yvwr91k.up-de-fra1-k8s-1.apps.run-on-seenode.com/getAllBlogs"
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          setLoading(false);
+          setArticles(res.message);
+        } else {
+          console.log("Response -- ",res.message);
+        }
       });
   }, []);
 
   function handleBlogDetail(details) {
-    console.log("Details --- ",details);
     navigate({
-      pathname : '/blogDetails',
-      search : createSearchParams({id : details}).toString()
-    })
-    // history.push({
-    //   search : details
-    // })
-    // localStorage.setItem("blogDetails", JSON.stringify(details));
-    // location.replace('/blogDetails');
+      pathname: "/blogDetails",
+      search: createSearchParams({ id: details }).toString(),
+    });
   }
 
   function stripHtml(html) {
-    let doc = new DOMParser().parseFromString(html, 'text/html');
+    let doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
   }
 
@@ -43,7 +44,7 @@ export default function Blog() {
   return (
     <div className="overflow-hidden py-4 pt-32">
       <div className="mx-auto max-w-6xl flex flex-col gap-5">
-        {articles.map((element, index) => (
+        {loading ? <Loader /> : (articles.map((element, index) => (
           <div
             key={index}
             onClick={() => handleBlogDetail(element._id)}
@@ -54,9 +55,7 @@ export default function Blog() {
                 <p className="mt-2 text-2xl font-bold tracking-tight text-main-color sm:text-2xl">
                   {element.title}
                 </p>
-                <p className="text-gray-800 font-semibold">
-                  {element.date}
-                </p>
+                <p className="text-gray-800 font-semibold">{element.date}</p>
                 <p className="mt-2 font-semibold text-justify text-gray-500 leading-5 line-clamp-2">
                   {truncateText(stripHtml(element.description), 200)}
                 </p>
@@ -72,7 +71,7 @@ export default function Blog() {
               />
             </div>
           </div>
-        ))}
+        )))}
       </div>
     </div>
   );
